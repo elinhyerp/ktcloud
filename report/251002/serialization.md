@@ -1,6 +1,6 @@
 # 데이터 교환 포맷 및 시리얼라이징 이해
 
-## 데이터 시리얼라이징(Serialization, 직렬화) 이란?
+## 1. 데이터 시리얼라이징(Serialization, 직렬화) 이란?
 
 컴퓨터 메모리 상세 존재하는 데이터(객체, 구조체 등)를 저장하거나 전송하기 쉽게 연속된 형태(문자열, 바이트 등)로 변환하는 것
 
@@ -20,30 +20,33 @@ console.log(serialized); // { "name": "Alice", "age": 25 }
 const deserialized = JSON.parse(serialized);
 console.log(deserialized.name); // "Alice"
 ```
+---
 
-## **시리얼라이징이 필요한 이유**
+## 2. 시리얼라이징이 필요한 이유
 
-### 1. 네트워크 통신
+### 1) 네트워크 통신
 
 - 프로그램 내부의 객체는 메모리 주소 등 시스템 종속적인 구조를 가지고 있어 그대로 전송할 수 없음
 - 시리얼라이징을 통해 객체를 표준화된 형태(JSON, XML 등)로 변환하면, 네트워크를 통해 전송하고 안전하게 디시리얼라이징 할 수 있음
 - ex: 서버 ↔ 클라이언트 간 JSON 통신, REST API 등
 
-### 2. 데이터 저장, 상태 복원 및 지속성
+### 2) 데이터 저장, 상태 복원 및 지속성
 
 - 프로그램 종료 시 메모리에 존재하는 객체는 소멸되므로, 시리얼라이징을 통해 객체의 상태를 파일, 데이터베이서, 캐시 등 외부 저장소에 영구 저장할 수 있음
 - 필요시 디시리얼라이징을 통해 원래의 객체 상태를 복원함으로써 데이터의 지속성을 확보
 - ex: 사용자 설정, 세션 정보 저장, 캐시 또는 로컬스토리지에 객체 상태 보존 등
 
-### 3. 시스템 간 호환
+### 3) 시스템 간 호환
 
 - 프로그래밍 언어나 운영체제마다 데이터 구조 표현 방식이 다름
 - 시리얼라이징을 통해 공통 데이터 포맷(JSON, XML 등)으로 변환해 시스템 간 데이터 교환 및 상호 운용성을 확보
 - ex: Python 백엔드 ↔ JavaScript 프론트엔드 간 데이터 교환, Windows ↔ Linux 간 네트워크 통신 등
 
-## **데이터 교환 포맷**
+---
 
-### 1. JSON(JavaScript Object Notation)
+## 3. 데이터 교환 포맷
+
+### 1) JSON(JavaScript Object Notation)
 
 - `{ "key": "value" }` 구조로, 데이터 교환에 최적화된 포맷
 - 가볍고 간결하며 불필요한 태그가 없음
@@ -61,7 +64,7 @@ console.log(deserialized.name); // "Alice"
 }
 ```
 
-### 2. XML(eXtensible Markup Language)
+### 2) XML(eXtensible Markup Language)
 
 - 트리 기반의 `<tag>value</tag>` 구조로, 문서 구조화 및 표준 교환에 최적화된 포맷
 - 계층적이며 확장이 가능해 메타데이터 표현에 강함
@@ -82,7 +85,7 @@ console.log(deserialized.name); // "Alice"
 </person>
 ```
 
-### 3. YAML(YAML Ain’t Markup Language)
+### 3) YAML(YAML Ain’t Markup Language)
 
 - 들여쓰기 기반 구조로, 설정 및 환경 관리에 최적화된 포맷
 - 간결하며 가독성이 높고, 설정 파일에 적합
