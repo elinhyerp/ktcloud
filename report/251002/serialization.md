@@ -6,7 +6,7 @@
 
 **디시리얼라이징(Deserialization, 역직렬화)**: 직렬화된 데이터를 다시 원래의 형태로 복원하는 것
 
-```jsx
+````jsx
 const user = {
   name: "Alice",
   age: 25,
@@ -19,7 +19,7 @@ console.log(serialized); // { "name": "Alice", "age": 25 }
 // deserialization
 const deserialized = JSON.parse(serialized);
 console.log(deserialized.name); // "Alice"
-```
+
 ---
 
 ## 2. 시리얼라이징이 필요한 이유
@@ -62,7 +62,7 @@ console.log(deserialized.name); // "Alice"
   "age": 25,
   "skills": ["JavaScript", "Python"]
 }
-```
+````
 
 ### 2) XML(eXtensible Markup Language)
 
