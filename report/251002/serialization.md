@@ -43,7 +43,7 @@ console.log(deserialized.name); // "Alice"
 
 ## **데이터 교환 포맷**
 
-### 1. JSON((JavaScript Object Notation)
+### 1. JSON(JavaScript Object Notation)
 
 - `{ "key": "value" }` 구조로, 데이터 교환에 최적화된 포맷
 - 가볍고 간결하며 불필요한 태그가 없음
