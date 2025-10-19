@@ -9,7 +9,6 @@
 - 서버에 데이터를 요청하고 응답할 때까지 이후의 작업들은 블로킹됨
 - 실제로 CPU가 느려지는 것은 아니지만, 시스템의 전체적인 효율이 저하됨
 - 총 실행 시간으로 따지면 비동기 방식보다 느림
-  <br>
   ![동기식 처리 모델](./synchronous.png)
   이미지 출처: [동기식 처리 모델(Synchronous processing model)](https://poiemaweb.com/es6-promise)
 
@@ -21,7 +20,6 @@
 - 이때, 응답 후 처리할 callback 함수를 함께 알려주는데, 해당 작업이 완료되었을 때 callback 함수가 호출됨
 - **callback 함수**는 초창기의 비동기 처리 방식에 사용되었는데, 비동기 작업이 연속적으로 여러 번 필요할 때, callback을 중첩하면 코드가 복잡해지는 한계(= callback hell, 콜백 지옥)에 부딪히게 되어, **Promise**가 등장하게 됨
 - 자바스크립트 대부분의 DOM 이벤트와 Timer 함수(setTimeout, setInterval), Ajax 요청은 비동기식 처리 모델로 동작
-  <br>
   ![비동기식 처리 모델](./asynchronous.png)
   이미지 출처: [비동기식 처리 모델(Asynchronous processing model)](https://poiemaweb.com/es6-promise)
 
@@ -42,7 +40,7 @@
 | rejected  | 비동기 처리가 수행된 상태 (실패)           | reject 함수가 호출된 상태                          |
 | settled   | 비동기 처리가 수행된 상태 (성공 또는 실패) | resolve 또는 reject 함수가 호출된 상태             |
 
-### 2) Promise 호출 과정과 후속처리
+### 2) Promise 호출 과정과 후속 처리
 
 #### 호출 과정
 
@@ -79,7 +77,8 @@
 - Promise의 상태와 상관없이 공통적으로 수행해야 할 처리 내용이 있을 때 유용하며, 주로 로딩 스피너 제거, 리소스 정리 등 마무리 작업에 사용
 - Promise를 반환
 
-**Promise 체이닝**
+##### Promise 체이닝
+
 비동기 함수의 처리 결과를 가지고 다른 비동기 함수를 호출해야 하는 경우, 전통적인 비동기 처리 방식에서는 함수의 호출이 중첩되어 콜백 지옥이 발생했는데, Promise 객체에 후속 처리 메소드인 . `then()`, `.catch()`, `.finally()` 등을 체이닝(chaining)해 여러 개의 Promise를 연결해 콜백 지옥을 해결할 수 있음
 
 ```javascript
@@ -138,8 +137,9 @@ async function run() {
 ### 3) 주의할 점
 
 **병렬 처리**
-await는 직렬 실행이 기본이라, 병렬적으로 처리할 수 있는 작업을 억지로 동기적으로 처리하게 할 경우, 성능 저하 및 기타 문제가 발생할 수 있음
-병렬로 처리 가능한 경우(ex: 의존 관계가 없는 경우) `Promise.all()` 사용
+
+- await는 직렬 실행이 기본이라, 병렬적으로 처리할 수 있는 작업을 억지로 동기적으로 처리하게 할 경우, 성능 저하 및 기타 문제가 발생할 수 있음
+- 병렬로 처리 가능한 경우(ex: 의존 관계가 없는 경우) `Promise.all()` 사용
 
 ```javascript
 // 직렬 실행하는 경우
