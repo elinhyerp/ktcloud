@@ -10,7 +10,6 @@ async function bootstrap() {
 
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
-  hbs.registerPartials(join(__dirname, '..', 'views'));
 
   hbs.registerHelper('inc', (v) => Number(v) + 1);
   hbs.registerHelper('dec', (v) => Number(v) - 1);
