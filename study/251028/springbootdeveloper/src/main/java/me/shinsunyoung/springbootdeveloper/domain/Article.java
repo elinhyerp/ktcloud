@@ -1,6 +1,5 @@
 package me.shinsunyoung.springbootdeveloper.domain;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
