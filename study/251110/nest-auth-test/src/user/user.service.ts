@@ -25,7 +25,7 @@ export class UserService {
     user.username = _user.username;
     user.password = _user.password;
     console.log(user);
-    this.userRepository.save(user);
+    await this.userRepository.save(user);
   }
 
   deleteUser(email: string) {
