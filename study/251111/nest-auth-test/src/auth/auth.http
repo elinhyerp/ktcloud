@@ -1,0 +1,50 @@
+@server = http://localhost:3000/auth
+### 회원가입
+POST http://localhost:3000/auth/register
+content-type: application/json
+
+{
+    "email" :"andy1@podo.com",
+    "password": "1234",
+    "username": "andy"
+}
+
+### 로그인
+POST http://localhost:3000/auth/login
+
+{
+    "email": "andy1@podo.com",
+    "password": "1234"
+}
+
+### 로그인2: 로그인 가드 사용
+POST http://localhost:3000/auth/login2
+
+{
+    "email": "andy1@podo.com",
+    "password": "1234"
+}
+
+### Guard 테스트
+GET http://localhost:3000/auth/test-guard
+
+### login3
+POST {{server}}/login3
+Content-Type: application/json
+
+{
+    "email": "bbb@abc.com",
+    "password": "bbb"
+}
+
+### login3 wrong password
+POST {{server}}/login3
+Content-Type: application/json
+
+{
+    "email": "bbb@abc.com",
+    "password": "bb"
+}
+
+### auth test
+GET {{server}}/test-guard2
