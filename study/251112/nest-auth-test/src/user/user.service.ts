@@ -1,0 +1,52 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { UpdateUserDto } from './user.dto';
+import { User } from './user.entity';
+
+@Injectable()
+export class UserService {
+  constructor(
+    @InjectRepository(User) private userRepository: Repository<User>,
+  ) {}
+
+  createUser(user): Promise<User> {
+    return this.userRepository.save(user);
+  }
+
+  async getUser(email: string): Promise<User> {
+    const result = await this.userRepository.findOne({ where: { email } });
+    return result as User;
+  }
+
+  async updateUser(email: string, _user: UpdateUserDto): Promise<void> {
+    const user: User = await this.getUser(email);
+    console.log(_user);
+    user.username = _user.username;
+    user.password = _user.password;
+    console.log(user);
+    await this.userRepository.save(user);
+  }
+
+  deleteUser(email: string) {
+    return this.userRepository.delete({ email });
+  }
+
+  async findByEmailOrSave(
+    email: string,
+    username: string,
+    providerId: string,
+  ): Promise<User> {
+    const foundUser = await this.getUser(email);
+    if (foundUser) {
+      return foundUser;
+    }
+
+    const newUser = await this.userRepository.save({
+      email,
+      username,
+      providerId,
+    });
+    return newUser;
+  }
+}
