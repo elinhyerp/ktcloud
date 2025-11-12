@@ -8,9 +8,11 @@ import { UserService } from 'src/user/user.service';
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy) {
   constructor(private userService: UserService) {
+    const configService = new ConfigService();
+
     super({
-      clientID: ConfigService.get('GOOGLE_CLIENT_ID') as string,
-      clientSecret: ConfigService.get('GOOGLE_CLIENT_SECRET') as string,
+      clientID: configService.get('GOOGLE_CLIENT_ID') as string,
+      clientSecret: configService.get('GOOGLE_CLIENT_SECRET') as string,
       callbackURL: 'http://localhost:3000/auth/google',
       scope: ['email', 'profile'],
     });
@@ -21,11 +23,11 @@ export class GoogleStrategy extends PassportStrategy(Strategy) {
     console.log(accessToken, refreshToken);
 
     const providerId = id;
-    const email = emails[0].value;
+    const email = emails?.[0].value;
 
     const user: User = await this.userService.findByEmailOrSave(
-      email,
-      name.familyName + name.givenName,
+      email ?? '',
+      (name?.familyName ?? '') + (name?.givenName ?? ''),
       providerId,
     );
 
