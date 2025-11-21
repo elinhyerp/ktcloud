@@ -17,7 +17,6 @@ import java.util.List;
 @Getter
 @Entity
 public class User implements UserDetails { // security에서 반드시 필요
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
@@ -34,7 +33,6 @@ public class User implements UserDetails { // security에서 반드시 필요
         this.email = email;
         this.password = password;
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

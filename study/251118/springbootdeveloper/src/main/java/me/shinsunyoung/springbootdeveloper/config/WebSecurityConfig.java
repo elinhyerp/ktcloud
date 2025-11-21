@@ -29,7 +29,10 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer configure() {
         return (web) -> web.ignoring()
                 .requestMatchers(toH2Console())
-                .requestMatchers("/static/**");
+                .requestMatchers(new AntPathRequestMatcher("/static/**"))
+                .requestMatchers("/public/**")
+                .requestMatchers("/uploads/**");
+
         // localhost:8080/static/a.html ✅
         // localhost:8080/static/b.html ✅
         // localhost:8080/static/path/to/dst/a.html ✅
